@@ -11,10 +11,10 @@ tags: Hive
 
 
 一个HQL任务，整体上可以分为两个部分，Hive阶段和Hadoop阶段，如下图 ：
-![-w785](Troubleshooting/15538391160636.jpg)
+{% asset_img 15538391160636.jpg HQL任务框架 %}
 ## Hive阶段
 Hive阶段对HQL进行解析、编译、优化、执行；主要包括驱动器、解析器、编译器、优化器和执行器
-![-w695](Troubleshooting/15541882205944.jpg)
+{% asset_img 15541882205944.jpg HQL-Hive阶段 %}
 
 + 驱动器：与用户进行交互，接收用户提交的HQL及获取执行器返回结果给用户；此阶段常见错误为：
     + `java heap space`：该异常一般为用户HQL访问的表元数据过大(表分区过多或表对应文件数据过多)，可通过调整HQL进行分区剪裁等减小驱动器压力或加大hive客户端内存解决；详细日志为hiveserver.log；
@@ -30,7 +30,7 @@ Hive阶段对HQL进行解析、编译、优化、执行；主要包括驱动器�
 ## Hadoop阶段
 目前主流使用Hive on MR进行HQL任务执行，在Hadoop阶段主要分为map、shuffle和reduce；
 MR任务资源调度流程如下图：
-![-w833](Troubleshooting/15540995551939.jpg)
+{% asset_img 15540995551939.jpg MR资源调度流程 %}
 
 + Client会将物理执行计划发送给RM；
 + RM向某个NM发送请求，创建AM；
@@ -42,7 +42,7 @@ MR任务资源调度流程如下图：
 + AM监控所有container都成功结束后，向RM请求退出；
 
 MR任务工作原理如下图：
-![-w1154](Troubleshooting/15541737167219.jpg)
+{% asset_img 15541737167219.jp MR任务原理 %}
 
 + MAP阶段
     + hdfs根据hive表指定Serde读取数据（并根据split大小对block进行切分）

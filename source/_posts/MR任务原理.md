@@ -59,9 +59,11 @@ MR任务总的来说，可以分为两大类：Common Join与Map Join；
 Common Join即为常规的MR任务，包含Map task、Shuffle和Reduce task；以一段HQL为例来详细说明Common Join执行过程；
 
 ```sql
-SELECT U.NAME,U.BALANCE,O.ORDER_ID FROM USERS U JOIN ORDERS O ON U.UID=O.UID
+--两表关联生成common join
+select u.name,u.balance,o.order_id from users u join orders o on u.uid = o.uid;
 ```
-![](MR任务原理/15602229498602.jpg)
+
+{% asset_img 15602229498602.jpg Common join %}
 
 #### HQL转换MR任务
 + Map阶段
@@ -84,6 +86,7 @@ select * from tbl_a a join tbl_b b on a.key_a=b.key_b join tbl_c c on a.key_a=c.
 --三表关联仅生成一个Job
 select * from tbl_a a join tbl_b b on a.key_a=b.key_b join tbl_c c on b.key_b=c.key_c
 
+
 --三表关联生成两个Job
 select * from tbl_a a join tbl_b b on a.key_a=b.key_b join tbl_c c on b.key_b1=c.key_c
 
@@ -95,15 +98,13 @@ select count(*) from tbl_a a join tbl_b b on a.key_a=b.key_b join tbl_c c on b.k
 MapJoin通常用于一个很小的表和一个大表进行join的场景，具体小表有多小，由参数hive.mapjoin.smalltable.filesize来决定，该参数表示小表的总大小，默认值为25000000字节，即25M。 
 Hive0.7之前，需要使用hint提示 /+ mapjoin(table) /才会执行MapJoin,否则执行Common Join，但在0.7版本之后，默认自动会转换Map Join，由参数hive.auto.convert.join来控制，默认为true. 
 假设a表为一张大表，b为小表，并且hive.auto.convert.join=true,那么Hive在执行时候会自动转化为MapJoin。
-![-w780](MR任务原理/15602212898864.jpg)
-
+{% asset_img 15602212898864.jpg Map join %}
 如图中的流程，首先是Task A，它是一个Local Task（在客户端本地执行的Task），负责扫描小表b的数据，将其转换成一个HashTable的数据结构，并写入本地的文件中，之后将该文件加载到DistributeCache中，该HashTable的数据结构可以抽象为：
 key	Value
 1	26
 2	34
 
-![](MR任务原理/15602218126613.jpg)
-
+{% asset_img 15602218126613.jpg Local task%}
 
 图中红框圈出了执行Local Task的信息。
 

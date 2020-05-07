@@ -21,9 +21,7 @@ HIVE是基于Hadoop的数据仓库解决方案。在Hadoop生态圈中，HIVE是
 简单的说： HIVE就是在Hadoop上架了一层SQL接口，可以将SQL翻译成MapReduce去Hadoop上执行，这样就使得数据开发和分析人员很方便的使用SQL来完成海量数据的统计和分析，而不必使用编程语言开发MapReduce那么麻烦。
 
 ## HIVE架构图
-![](Hive简介/15635248373956.jpg)
-
-
+{% asset_img 15635248373956.jpg Hive架构图 %}
 
 HIVE通过给用户提供的一系列交互接口，接收到用户的指令(SQL)，使用自己的Driver，结合元数据(MetaStore)，将SQL解析成Mapreduce，提交到Hadoop中执行，最后，将执行返回的结果输出。在使用过程中，只需要将Hive看做是一个数据库就行，本身Hive也具备了数据库的很多特性和功能。 Metastore: 存储Hive库、表的元数据库 Driver：负责提交、优化、执行SQL 连接Hive的方式：
 

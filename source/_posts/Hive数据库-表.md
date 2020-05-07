@@ -230,6 +230,7 @@ show create table tablename;
 ## Hive数据类型
 ### 基础数据类型
 ![-w697](Hive数据库-表/15560016463279.jpg)
+{% asset_img 15560016463279.jpg Hive基础数据类型%}
 
 ### 复杂数据类型
 + ARRAY：ARRAY类型是由一系列相同数据类型的元素组成，这些元素可以通过下标来访问。比如有一个ARRAY类型的变量fruits，它是由 ['apple','orange','mango']组成，那么我们可以通过fruits[1]来访问元素orange，因为ARRAY类型的下标是从 0开始的； 
@@ -243,7 +244,7 @@ show create table tablename;
 + 时间戳和日期可以隐式地转换成文本类型。
 Hive 支持的隐式转换详见下图：
 ![-w882](Hive数据库-表/15560019667939.jpg)
-
+{% asset_img 15560019667939.jpg Hive隐式转换 %}
 
 ### 显示转换
 Hive 可通过 cast (columns as column_type)进行显示转换，转换失败时返回NULL；
