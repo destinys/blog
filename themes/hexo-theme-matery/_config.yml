@@ -261,13 +261,13 @@ postCalendar: true
 # the Gitalk config，default disabled
 # Gitalk 评论模块的配置，默认为不激活
 gitalk:
-  enable: true
+  enable: false
   owner: destinys
-  repo: blogcomments
+  repo: gitalk-commnet
   oauth:
     clientId: 12cdbe844f4ee5e8289d
     clientSecret: 9406ff2e3c88d7080ba1861395f255bfb4a9a498
-  admin:
+  admin: ['destinys']
 
 # the Gitment config，default disabled
 # Gitment 评论模块的配置，默认为不激活
@@ -295,15 +295,15 @@ livere:
 # To use it, activate the configuration item and set appId and appKey.
 # Valine 评论模块的配置，默认为不激活，如要使用，就请激活该配置项，并设置 appId 和 appKey.
 valine:
-  enable: false
-  appId:
-  appKey:
+  enable: true
+  appId: LG6CeVXJS7pCw3q9f9xiagip-gzGzoHsz
+  appKey: Sxv6WAcyyQ2q7G1CNlKInz74
   notify: false
   verify: false
   visitor: true
   avatar: 'mm' # Gravatar style : mm/identicon/monsterid/wavatar/retro/hide
   pageSize: 10
-  placeholder: 'just go go' # Comment Box placeholder
+  placeholder: ヾﾉ≧∀≦)o来啊，快活啊! 
   background: /medias/comment_bg.png
   coolpushkey: 
 
